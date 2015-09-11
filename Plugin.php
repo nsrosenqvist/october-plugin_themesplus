@@ -4,6 +4,7 @@ use App;
 use File;
 use Cms\Classes\Theme;
 use System\Classes\ComposerManager;
+use System\Classes\PluginManager;
 
 class Plugin extends \System\Classes\PluginBase
 {
@@ -24,7 +25,7 @@ class Plugin extends \System\Classes\PluginBase
         $theme = Theme::getActiveTheme();
         $themePath = $theme->getPath();
         $vendorPath = $themePath.'/vendor';
-        $providerPath = $themePath.'/Theme.php';
+        $providerPath = $themePath.'/Plugin.php';
 
         // Autoload active theme's vendor directory
         if ( File::isDirectory($vendorPath) )
@@ -35,13 +36,18 @@ class Plugin extends \System\Classes\PluginBase
         {
             require $providerPath;
 
-            if ( class_exists('ThemesPlusTheme\\Theme'))
+            if ( class_exists('ThemesPlusTheme\\Plugin'))
             {
-                \App::register('\\ThemesPlusTheme\\Theme');
+                //\App::register('\\ThemesPlusTheme\\Plugin');
 
-                // Boot our theme's service provider
-                //$instance = new \ThemesPlusTheme\Theme(App::make('app'));
-                //$instance->boot();
+                $manager = PluginManager::instance();
+
+                // Add our service provider to the plugin manager
+                $manager->loadPlugin('ThemesPlusTheme', $themePath);
+
+                // Boot it
+                $plugins = $manager->getPlugins();
+                $manager->bootPlugin($plugins['ThemesPlusTheme.Plugin']);
             }
         }
 

@@ -8,11 +8,11 @@ anything that can be done with a plugin can now be done with a theme.
 
 * `git clone` to */plugins/nsrosenqvist/themesplug* directory
 * `php artisan plugin:refresh Nsrosenqvist.ThemesPlus`
-* In your active theme's directory add a *Theme.php* file with the following code:
+* In your active theme's directory add a *Plugin.php* file with the following code:
 ```php
 <?php namespace ThemesPlusTheme;
 
-class Theme extends \System\Classes\PluginBase
+class Plugin extends \System\Classes\PluginBase
 {
     public function pluginDetails()
     {

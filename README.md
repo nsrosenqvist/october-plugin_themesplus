@@ -6,7 +6,7 @@ anything that can be done with a plugin can now be done with a theme.
 
 ## Installation
 
-* `git clone` to */plugins/nsrosenqvist/themesplug* directory
+* `git clone` to */plugins/nsrosenqvist/themesplus* directory
 * `php artisan plugin:refresh Nsrosenqvist.ThemesPlus`
 * In your active theme's directory add a *Plugin.php* file with the following code:
 ```php

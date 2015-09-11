@@ -9,27 +9,25 @@ anything that can be done with a plugin can now be done with a theme.
 * `git clone` to */plugins/nsrosenqvist/themesplug* directory
 * `php artisan plugin:refresh Nsrosenqvist.ThemesPlus`
 * In your active theme's directory add a *Theme.php* file with the following code:
+```php
+<?php namespace ThemesPlusTheme;
 
-
-    
-    <?php namespace ThemesPlusTheme;
-    
-    class Theme extends \System\Classes\PluginBase
+class Theme extends \System\Classes\PluginBase
+{
+    public function pluginDetails()
     {
-        public function pluginDetails()
-        {
-            return [
-                'name' => 'Themes+Theme',
-                'description' => 'Execute complex tasks from your theme.',
-                'author' => 'Your Name',
-                'icon' => 'icon-leaf',
-                'homepage' => 'https://www.yourite.com/'
-            ];
-        }
-    
-        public function boot()
-        {
-            // your code here
-        }
+        return [
+            'name' => 'Themes+Theme',
+            'description' => 'Execute complex tasks from your theme.',
+            'author' => 'Your Name',
+            'icon' => 'icon-leaf',
+            'homepage' => 'https://www.yourite.com/'
+        ];
     }
-    
+
+    public function boot()
+    {
+        // your code here
+    }
+}
+```

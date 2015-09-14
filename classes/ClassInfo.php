@@ -7,6 +7,7 @@ class ClassInfo {
     protected $tokens = [];
     protected $lockedTokens = [];
 
+    // The only info we extract
     protected $tokensOfInterest = [
         T_CLASS => false,
         T_EXTENDS => false,
@@ -30,17 +31,22 @@ class ClassInfo {
         $tokensFound = [];
         $symbols = "";
 
+        // Loop through the list of tokens we're looking after
         foreach ($this->tokensOfInterest as $key => $value)
         {
+            // Compare with the tokens in the file
             foreach ($tokens as $token)
             {
+                // If a token has been found (which shouldn't exist twice) we skip it
                 if (is_array($token) && in_array($token[0], $this->lockedTokens))
                     continue;
 
+                // Check if it's a token we're looking for
                 if (is_array($token) && $token[0] == $key)
                 {
                     $this->tokensOfInterest[$key] = true;
 
+                    // If it's a namespace we need flag it so we can process several tokens
                     if (in_array($token[0], [T_NAMESPACE, T_EXTENDS]))
                     {
                         $gettingNamespace = true;
@@ -50,12 +56,14 @@ class ClassInfo {
                 }
                 else
                 {
+                    // Check if should continue extracting a namespace
                     if ($gettingNamespace)
                     {
                         if (is_array($token) && in_array($token[0], [T_STRING, T_NS_SEPARATOR]))
                         {
                             $tokensFound[$namespacedToken] .= $token[1];
                         }
+                        // Stop processing the namespace if we find either a ; or a {
                         elseif (! is_array($token) && in_array($token, [';','{']))
                         {
                             $symbols .= " ".$token;
@@ -66,6 +74,7 @@ class ClassInfo {
                     }
                     else
                     {
+                        // Save the token if it's one we've been searching for
                         if (is_array($token) && $this->tokensOfInterest[$key] && $token[0] == T_STRING)
                         {
                             $tokensFound[$key] = $token[1];
@@ -82,6 +91,7 @@ class ClassInfo {
         return $tokensFound;
     }
 
+    // Custom getter so that we can access found tokens like class properties
     public function __get($name)
     {
         $token = constant("T_".strtoupper($name));

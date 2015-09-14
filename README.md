@@ -1,19 +1,26 @@
 # Description
 
 This plugin allows execution of complex code directly from plugins by providing
-a service provider and composer support. Through the new service provider, 
+a service provider and composer support. Through the new service provider,
 anything that can be done with a plugin can now be done with a theme.
+
+## Note
+Your theme can't use the standard name for the composer vendor directory. You'll
+have to change your composer config to something like "dependencies".
 
 ## Installation
 
 * `git clone` to */plugins/nsrosenqvist/themesplus* directory
 * `php artisan plugin:refresh Nsrosenqvist.ThemesPlus`
 * In your active theme's directory add a *Plugin.php* file with the following code:
-```php
-<?php namespace ThemesPlusTheme;
 
-class Plugin extends \System\Classes\PluginBase
+```php
+<?php namespace MyCompany\MyTheme;
+
+class Plugin extends \Nsrosenqvist\ThemesPlus\Classes\ThemesPlusBase
 {
+    protected $vendorDir = "dependencies";
+
     public function pluginDetails()
     {
         return [
@@ -25,9 +32,6 @@ class Plugin extends \System\Classes\PluginBase
         ];
     }
 
-    public function boot()
-    {
-        // your code here
-    }
+    // And all functions for things you want to register...
 }
 ```

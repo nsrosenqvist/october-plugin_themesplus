@@ -1,0 +1,8 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+definitions_generated_for:
+    label: Theme Namespace
+    type: text
+    comment: "The theme namespace that the Composer definitions file has been generated for."

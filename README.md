@@ -6,7 +6,7 @@ anything that can be done with a plugin can now be done with a theme.
 
 ## Note
 Your theme can't use the standard name for the composer vendor directory. You'll
-have to change your composer config to something like "dependencies".
+have to change it in your composer config to "dependencies".
 
 ## Installation
 

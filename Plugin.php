@@ -29,7 +29,7 @@ class Plugin extends \System\Classes\PluginBase
         // Get paths we need
         $theme = Theme::getActiveTheme();
         $themePath = $theme->getPath();
-        $themeVendorDir = $themePath.'/'.$this->vendorDir.'/autoload.php';
+        $themeVendorPath = $themePath.'/dependencies/autoload.php';
         $pluginPath = dirname(__FILE__);
         $providerPath = $themePath.'/Plugin.php';
 
@@ -57,9 +57,9 @@ class Plugin extends \System\Classes\PluginBase
                 }
 
                 // Autoload theme vendor directory
-                if (File::isFile($themeVendorDir))
+                if (File::isFile($themeVendorPath))
                 {
-                    ComposerManager::instance()->autoload($themeVendorDir);
+                    ComposerManager::instance()->autoload($themeVendorPath);
                 }
 
                 // Add theme to autoload through our definitions file

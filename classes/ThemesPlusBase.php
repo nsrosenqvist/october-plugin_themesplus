@@ -4,5 +4,5 @@ use Cms\Classes\Theme;
 
 class ThemesPlusBase extends \System\Classes\PluginBase
 {
-    protected $vendorDir = "dependencies";
+    // Extend this
 }

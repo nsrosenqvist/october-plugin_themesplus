@@ -4,11 +4,30 @@ This plugin allows execution of complex code directly from plugins by providing
 a service provider and composer support. Through the new service provider,
 anything that can be done with a plugin can now be done with a theme.
 
+It basically makes OctoberCMS load your theme as a plugin in the system. So
+create the plugin definition file as you would normally but make sure to extend
+`\Nsrosenqvist\ThemesPlus\Classes\ThemesPlusBase` instead of the normal
+`PluginBase`.
+
 ## Installation
 
-* `git clone` to */plugins/nsrosenqvist/themesplus* directory
-* `php artisan plugin:refresh Nsrosenqvist.ThemesPlus`
-* In your active theme's directory add a *Plugin.php* file with the following code:
+Either install it via the marketplace or simply clone this repository into your
+OctoberCMS installations' plugins directory.
+
+```shell
+cd <your-october-root>/plugins
+git clone https://github.com/nsrosenqvist/october-plugin_themesplus.git nsrosenqvist/themesplus
+```
+
+Then run:
+```shell
+php artisan plugin:refresh Nsrosenqvist.ThemesPlus`
+```
+
+## Usage
+
+Make sure to specify `NSRosenqvist.ThemesPlus` as a theme dependency and then
+add a *Plugin.php* file in the theme root with the following code:
 
 ```php
 <?php namespace MyCompany\MyTheme;

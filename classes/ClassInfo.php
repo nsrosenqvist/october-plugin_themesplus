@@ -1,4 +1,4 @@
-<?php namespace Nsrosenqvist\ThemesPlus\Classes;
+<?php namespace NSRosenqvist\ThemesPlus\Classes;
 
 use File;
 

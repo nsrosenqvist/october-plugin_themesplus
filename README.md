@@ -6,7 +6,7 @@ anything that can be done with a plugin can now be done with a theme.
 
 It basically makes OctoberCMS load your theme as a plugin in the system. So
 create the plugin definition file as you would normally but make sure to extend
-`\Nsrosenqvist\ThemesPlus\Classes\ThemesPlusBase` instead of the normal
+`\NSRosenqvist\ThemesPlus\Classes\ThemesPlusBase` instead of the normal
 `PluginBase`.
 
 ## Installation
@@ -21,7 +21,7 @@ git clone https://github.com/nsrosenqvist/october-plugin_themesplus.git nsrosenq
 
 Then run:
 ```shell
-php artisan plugin:refresh Nsrosenqvist.ThemesPlus`
+php artisan plugin:refresh NSRosenqvist.ThemesPlus`
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ add a *Plugin.php* file in the theme root with the following code:
 ```php
 <?php namespace MyCompany\MyTheme;
 
-class Plugin extends \Nsrosenqvist\ThemesPlus\Classes\ThemesPlusBase
+class Plugin extends \NSRosenqvist\ThemesPlus\Classes\ThemesPlusBase
 {
     public function pluginDetails()
     {

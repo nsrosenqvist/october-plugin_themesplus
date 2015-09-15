@@ -1,11 +1,11 @@
-<?php namespace Nsrosenqvist\ThemesPlus;
+<?php namespace NSRosenqvist\ThemesPlus;
 
 use App;
 use File;
 use Cms\Classes\Theme;
 use System\Classes\ComposerManager;
 use System\Classes\PluginManager;
-use Nsrosenqvist\ThemesPlus\Models\Settings;
+use NSRosenqvist\ThemesPlus\Models\Settings;
 
 class Plugin extends \System\Classes\PluginBase
 {
@@ -38,7 +38,7 @@ class Plugin extends \System\Classes\PluginBase
             // Use reflection to find out info about Plugin.php
             $info = new Classes\ClassInfo($providerPath);
 
-            if (ltrim($info->extends, '\\') == "Nsrosenqvist\\ThemesPlus\\Classes\\ThemesPlusBase")
+            if (ltrim($info->extends, '\\') == "NSRosenqvist\\ThemesPlus\\Classes\\ThemesPlusBase")
             {
                 // Activate the theme plugin
                 $plugin = $this->manager->loadPlugin($info->namespace, $themePath);

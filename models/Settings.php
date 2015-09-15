@@ -1,4 +1,4 @@
-<?php namespace Nsrosenqvist\ThemesPlus\Models;
+<?php namespace NSRosenqvist\ThemesPlus\Models;
 
 use Model;
 

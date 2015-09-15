@@ -29,7 +29,6 @@ class Plugin extends \System\Classes\PluginBase
         // Get paths we need
         $theme = Theme::getActiveTheme();
         $themePath = $theme->getPath();
-        $themeVendorPath = $themePath.'/dependencies/autoload.php';
         $pluginPath = dirname(__FILE__);
         $providerPath = $themePath.'/Plugin.php';
 
@@ -56,12 +55,6 @@ class Plugin extends \System\Classes\PluginBase
                     Settings::set('definitions_generated_for', $identifier);
                 }
 
-                // Autoload theme vendor directory
-                if (File::isFile($themeVendorPath))
-                {
-                    ComposerManager::instance()->autoload($themeVendorPath);
-                }
-
                 // Add theme to autoload through our definitions file
                 ComposerManager::instance()->autoload($pluginPath);
             }
@@ -80,22 +73,4 @@ class Plugin extends \System\Classes\PluginBase
 
         return $php;
     }
-
-//     return array(
-//     'XdgBaseDir\\' => array($vendorDir . '/dnoegel/php-xdg-base-dir/src'),
-//     'System\\' => array($baseDir . '/modules/system'),
-//     'Symfony\\Component\\Filesystem\\' => array($vendorDir . '/symfony/filesystem'),
-//     'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
-//     'SuperClosure\\' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
-//     'Stringy\\' => array($vendorDir . '/danielstjules/stringy/src'),
-//     'October\\Rain\\' => array($vendorDir . '/october/rain/src'),
-//     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
-//     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
-//     'League\\Csv\\' => array($vendorDir . '/league/csv/src'),
-//     'Illuminate\\Html\\' => array($vendorDir . '/illuminate/html'),
-//     'Illuminate\\' => array($vendorDir . '/laravel/framework/src/Illuminate'),
-//     'Cms\\' => array($baseDir . '/modules/cms'),
-//     'ClassPreloader\\' => array($vendorDir . '/classpreloader/classpreloader/src'),
-//     'Backend\\' => array($baseDir . '/modules/backend'),
-// );
 }

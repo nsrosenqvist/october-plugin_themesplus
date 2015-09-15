@@ -4,10 +4,6 @@ This plugin allows execution of complex code directly from plugins by providing
 a service provider and composer support. Through the new service provider,
 anything that can be done with a plugin can now be done with a theme.
 
-## Note
-Your theme can't use the standard name for the composer vendor directory. You'll
-have to change it in your composer config to "dependencies".
-
 ## Installation
 
 * `git clone` to */plugins/nsrosenqvist/themesplus* directory
@@ -19,8 +15,6 @@ have to change it in your composer config to "dependencies".
 
 class Plugin extends \Nsrosenqvist\ThemesPlus\Classes\ThemesPlusBase
 {
-    protected $vendorDir = "dependencies";
-
     public function pluginDetails()
     {
         return [

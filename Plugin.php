@@ -15,7 +15,7 @@ class Plugin extends \System\Classes\PluginBase
     {
         return [
             'name' => 'Themes+',
-            'description' => 'Enables theme developers to ship plugins with their themes.',
+            'description' => 'Enables theme developers to use all functionality commonly found in plugins in a theme.',
             'author' => 'Niklas Rosenqvist',
             'icon' => 'icon-leaf',
             'homepage' => 'https://www.nsrosenqvist.com/'
@@ -60,17 +60,36 @@ class Plugin extends \System\Classes\PluginBase
             }
         }
 
+        // dd(\Composer\Autoload\ClassLoader::findFile('MyCompany\\MyTheme\\Classes\\Radical'));
         // dd(ComposerManager::instance());
     }
 
     protected function makeDefinitionFile($namespace, $path)
     {
+        $namespace = str_replace('\\', '\\\\', $namespace);
+
+        // We can't simply create one definition entry because PSR-4 requires
+        // the folder names to be uppercase and OctoberCMS' plugin directory structure
+        // has them all lowercase, and we want it to be exactly like a Plugin.
+        $themeDirs = [
+            'components' => 'Components',
+            'models' => 'Models',
+            'classes' => 'Classes',
+            'widgets' => 'Widgets',
+            'formwidgets' => 'FormWidgets'
+        ];
+
         $php = '<?php'.PHP_EOL;
         $php .= PHP_EOL;
         $php .= 'return array('.PHP_EOL;
-        $php .= "\t".'\''.str_replace('\\', '\\\\', $namespace).'\\\\\' => array(\''.$path.'\')'.PHP_EOL;
-        $php .= ');'.PHP_EOL;
 
+        // Create a PSR-4 definition line for every theme subdirectory
+        foreach ($themeDirs as $dirBaseName => $dirNamespace)
+        {
+            $php .= "\t".'\''.$namespace.'\\\\'.$dirNamespace.'\\\\\' => array(\''.$path.'/'.$dirBaseName.'\'),'.PHP_EOL;
+        }
+
+        $php .= ');'.PHP_EOL;
         return $php;
     }
 }

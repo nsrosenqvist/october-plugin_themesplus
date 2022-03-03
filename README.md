@@ -1,6 +1,6 @@
 # Description
 
-This plugin allows execution of complex code directly from plugins by providing
+This plugin allows execution of complex code directly from themes by providing
 a service provider and composer support. Through the new service provider,
 anything that can be done with a plugin can now be done with a theme.
 

@@ -41,7 +41,7 @@ class Plugin extends \NSRosenqvist\ThemesPlus\Classes\ThemesPlusBase
             'description' => 'Execute complex tasks from your theme.',
             'author' => 'Your Name',
             'icon' => 'icon-leaf',
-            'homepage' => 'https://www.yourite.com/'
+            'homepage' => 'https://www.example.com/'
         ];
     }
 
